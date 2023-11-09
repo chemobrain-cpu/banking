@@ -139,7 +139,7 @@ const ContactPage = () => {
         <div className="page-title-area item-bg1 jarallax" data-jarallax='{"speed": 0.3}'>
             <div className="container">
                 <div className="page-title-content">
-                    <h2>CONTAT US</h2>
+                    <h2>CONTACT US</h2>
                 </div>
             </div>
         </div>
