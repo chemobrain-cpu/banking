@@ -149,6 +149,7 @@
 @media screen and (max-width:650px) {
     .screenContainer h1 {
         font-size: 1.5rem;
+        
     }
 
 
@@ -168,6 +169,7 @@
 
 
     }
+   
 
     .screenContainer .rightContainer .rightformcontainer {
         padding-top: 20px;

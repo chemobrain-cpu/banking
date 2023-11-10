@@ -113,7 +113,7 @@ function LoginPage() {
 
 
                     <div className={styles.inputcontainer}>
-                        <h2>Login to dashboard</h2>
+                        <h2>Sign In</h2>
 
                         <div className={styles.formCard}>
                             <FormInput
