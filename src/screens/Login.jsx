@@ -1,284 +1,173 @@
-import React, { useEffect, useState } from 'react';
-import styles from './Home.module.css'
+import React, { useState, useCallback } from 'react';
+import styles from './Login.module.css';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import FormInput from '../components/Input';
+import SubmitBtn from '../components/Submit';
+import Loader from "../components/loader";
 
 
-const LoginPage = () => {
-    let [isLoading, setIsLoading] = useState(true)
-    let [isShow,setIsShow] =  useState(false)
-    let load = () => {
-        setIsLoading(false)
+function LoginPage() {
+
+    let [userEmail, setUserEmail] = useState("")
+    let [userEmailError, setUserEmailError] = useState("")
+    let [userPassword, setUserPassword] = useState("")
+    let [userPasswordError, setUserPasswordError] = useState("")
+
+    let [isError, setIsError] = useState(false)
+    let [isErrorInfo, setIsErrorInfo] = useState('')
+    let [isLoading, setIsLoading] = useState(false)
+    //initialising reduzx
+    let dispatch = useDispatch()
+    let { color } = useSelector(state => state.userAuth)
+    //initialise router
+    let navigate = useNavigate()
+    //loaders state
+
+    const toSignup = ()=>{
+        navigate('/signup')
     }
 
 
+    let isFormValid = userEmail && !userEmailError && userPassword && !userPasswordError
 
-    useEffect(() => {
-        setTimeout(() => {
-            load()
-        }, 5000)
+  
 
-    }, [load])
+    let setFormDetails = useCallback(e => {
+        setIsError(false)
+        if (e.formName === "userEmail") {
+            let formValue = e.value
+            setUserEmail(formValue)
+            setUserEmailError(e.error)
+
+        } else if (e.formName === "userPassword") {
+            let formValue = e.value
+            setUserPassword(formValue)
+            setUserPasswordError(e.error)
+
+        }
 
 
-    let togglemenu = ()=>{
-        setIsShow(prev=>!prev)
-        
+    }, [])
+
+
+    const submitHandler = async (e) => {
+        e.preventDefault()
+        if (!isFormValid) {
+            return
+        }
+        setIsLoading(true)
+
+        let data = {
+            email: userEmail,
+            password: userPassword
+        }
+
+        console.log(data)
+
+        return
+        let response = await dispatch(({
+            email: userEmail,
+            password: userPassword
+        }))
+
+        if (!response.bool) {
+            setIsLoading(false)
+            setIsError(true)
+            setIsErrorInfo(response.message)
+            setTimeout(() => {
+                navigate(`${response.url}`)
+            }, 3000)
+
+
+        }else{
+            setIsLoading(false)
+            setTimeout(() => {
+                navigate(`${response.url}`)
+            }, 3000)
+        }
     }
 
-   
+
+    let navigateBackward = ()=>{
+        navigate(-1)
+
+    }
 
 
     return (<>
 
-        {isLoading ? <div className="preloader">
-            <div className="loader">
-                <div className="shadow"></div>
-                <div className="box"></div>
-            </div>
-        </div> : ""}
+        <div className={styles.screenContainer}>
+            
 
+            <div className={styles.rightContainer}>
 
-
-
-
-        <div className='navbar-area'>
-            <div className="luvion-responsive-nav">
-                <div className="container">
-                    <div className="luvion-responsive-menu">
-                        <div className="logo">
-                            <a href="/">
-                                <img src="front/img/favicon.png" alt="logo" />
-                                <img src="front/img/favicon.png" alt="logo" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="luvion-nav">
-                <div className="container">
-                    <nav className="navbar navbar-expand-md navbar-light">
-                        <a className="navbar-brand" href="/">
-                            <img src="front/img/favicon.png" alt="logo" />
-                            <img src="front/img/favicon.png" alt="logo" />
-                        </a>
-
-                        <div className="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                            <ul className="navbar-nav">
-                                <li className="nav-item"><a href="/" className="nav-link active">HOME</a></li>
-
-                                <li className="nav-item"><a href="#" className="nav-link">PERSONAL </a>
-                                    <ul className="dropdown-menu">
-                                        <li className="nav-item"><a href="/savings" className="nav-link">SAVINGS ACCOUNT</a></li>
-
-                                        <li className="nav-item"><a href="/current" className="nav-link">CURRENT ACCOUNT</a></li>
-                                    </ul>
-                                </li>
-
-                                <li className="nav-item"><a href="/about" className="nav-link">ABOUT US</a></li>
-
-
-
-                                <li className="nav-item"><a href="/cards" className="nav-link">CARDS</a></li>
-
-
-                                <li className="nav-item"><a href="/faq" className="nav-link">FAQ</a></li>
-
-                                <li className="nav-item"><a href="/contact" className="nav-link">CONTACT</a></li>
-                            </ul>
-
-                            <div className="others-options">
-                                <a href="/login" target="_blank" className="login-btn">
-                                    <strong><i className="flaticon-user"></i> ONLINE BANKING</strong></a>
-                            </div>
-                        </div>
-
-
-
-
-
-                    </nav>
-                </div>
-            </div>
-
-            <div className={styles.togglebtn} onClick={togglemenu}>
-            <i class="fas fa-bars"></i>
-            </div>
-
-
-            <div className={isShow?`${styles.show}`:`${styles.menu_1}`}>
-                <ul className={styles.listcontainer}>
-                    <li className={styles.listitem}><a href="/" >HOME</a></li>
-
-                    <li className={styles.listitemexpand}><a href="/savings" >SAVINGS ACCOUNT</a>
+                {isLoading && <Loader />}
+                <form className={styles.rightformcontainer} onSubmit={submitHandler}>
+                    <div className={styles.navigate}>
                         
-                    </li>
-                    <li className={styles.listitemexpand}><a href="/current" >CURRENT ACCOUNT </a>
-                        
-                    </li>
 
-                    <li className={styles.listitem}><a href="/about" >ABOUT US</a></li>
+                    </div>
 
 
 
-                    <li className={styles.listitem}><a href="/cards" >CARDS</a></li>
+
+                    <div className={styles.inputcontainer}>
+                        <h2>Login to dashboard</h2>
+
+                        <div className={styles.formCard}>
+                            <FormInput
+                                icon='edit'
+                                label='Email'
+                                type='email'
+                                types="email"
+                                className="formcard"
+                                formName="userEmail"
+                                placeholder=''
+                                setFormDetails={setFormDetails}
+                            />
+
+                        </div>
+
+                        <div className={styles.formCard}>
+                            <FormInput
+                                icon='edit'
+                                label='Password'
+                                type='password'
+                                className="formcard"
+                                setFormDetails={setFormDetails}
+                                formName="userPassword"
+                                placeholder=''
+                            />
+                        </div>
+
+                    </div>
 
 
-                    
 
-                    <li className={styles.listitem}><a href="/contact" >CONTACT</a></li>
-                    <li className={styles.listitemlast}><a href="/login" >LOGIN</a><a href="/signup" >SIGNUP</a></li>
-                </ul>
 
-                
+
+                    <div className={styles.submit}>
+                        <SubmitBtn style={{ borderRadius: '8px', marginBottom: '20px' }} text="Login" />
+
+                        {isError && <p className={styles.errorText} >{isErrorInfo}</p>}
+
+
+                    </div>
+
+                    <p className={styles.alternative}> Don't have account ? <span onClick={toSignup}>Signup</span></p>
+
+
+
+                </form>
+
             </div>
+
+
         </div>
+    </>
 
-
-        <div className="page-title-area item-bg1 jarallax" data-jarallax='{"speed": 0.3}'>
-            <div className="container">
-                <div className="page-title-content">
-                    <h2>LOGIN TO DASHBOARD</h2>
-                </div>
-            </div>
-        </div>
-
-
-        <section class="contact-area ptb-70">
-            <div class="container">
-                <div class="section-title">
-                  
-                    <div class="bar"></div>
-                </div>
-
-                <div class="row" style={{display:'flex',justifyContent:'center'}}>   
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="contact-form">
-                            <form id="contactForm">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" name="name" id="name" class="form-control" required data-error="Please enter your name" placeholder="Name" />
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <input type="email" name="email" id="email" class="form-control" required data-error="Please enter your email" placeholder="Email" />
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" name="phone_number" id="phone_number" required data-error="Please enter your number" class="form-control" placeholder="Phone" />
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" name="msg_subject" id="msg_subject" class="form-control" required data-error="Please enter your subject" placeholder="Subject" />
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-                                    </div>
-
-                                   
-
-                                    <div class="col-lg-12 col-md-12">
-                                        <button type="submit" class="btn btn-primary">login</button>
-                                        
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-map"><img src="front/img/bg-map.png" alt="image" /></div>
-        </section>
-
-
-
-        <footer className="footer-area">
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-3 col-sm-6 col-md-6">
-                        <div className="single-footer-widget">
-                            <div className="logo">
-                                <a href="/" className="black-logo"><img src="front/img/favicon.png" alt="logo" /></a>
-                                
-                                <p>Our response by the end of 2020 included a $20 million premium pay program for our employees.</p>
-                            </div>
-
-                            <ul className="social-links">
-                                <li><a href="#" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#" target="_blank"><i className="fab fa-twitter"></i></a></li>
-                                <li><a href="#" target="_blank"><i className="fab fa-instagram"></i></a></li>
-                                <li><a href="#" target="_blank"><i className="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-3 col-sm-6 col-md-6">
-                        <div className="single-footer-widget">
-                            <h3>Company</h3>
-
-                            <ul className="list">
-                                <li><a href="/about">About Us</a></li>
-                                <li>
-                                    <a href="/savings">Savings</a>
-                                </li>
-                                <li><a href="checking.html">Checking</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-3 col-sm-6 col-md-6">
-                        <div className="single-footer-widget">
-                            <h3>Support</h3>
-
-                            <ul className="list">
-                                <li><a href="/faq">FAQ's</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="/contact">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="col-lg-3 col-sm-6 col-md-6">
-                        <div className="single-footer-widget">
-                            <h3>Address</h3>
-
-                            <ul className="footer-contact-info">
-                                <li><span>Location:</span> 27 Division St, NY 10002, USA</li>
-                                <li><span>Phone:</span> <a href="tel:+321984754">+ (321) 984 754</a></li>
-                                <li><span>Fax:</span> <a href="tel:+12129876543">+1-212-9876543</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="copyright-area">
-                    <p>Copyright
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> | <a href="/" target="_blank">Smarter Banking</a></p>
-                </div>
-            </div>
-
-
-        </footer>
-
-        <div class="go-top"><i class="fas fa-arrow-up"></i></div>
-
-
-    </>)
-
-
+    );
 }
 
 export default LoginPage

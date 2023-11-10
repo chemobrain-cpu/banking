@@ -1,3 +1,31 @@
-.App {
- 
+
+::placeholder {
+  font-size: 1rem;
+  padding-left: 5px;
+  text-align: left;
+  width:100%;
+  color:rgb(123, 123, 123);
+  font-weight: lighter;
+  font-family: Poppins;
 }
+
+::placeholder {
+  font-size: 1rem;
+  padding-left: 5px;
+  text-align: left;
+  width:100%;
+  color:rgb(123, 123, 123);
+  font-weight: lighter;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-box-shadow:0 0 0 30px white inset !important
+}
+
