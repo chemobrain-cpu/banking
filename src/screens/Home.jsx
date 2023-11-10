@@ -119,6 +119,7 @@ const HomePage = () => {
                     <li className={styles.listitem}><a href="/faq" >FAQ</a></li>
 
                     <li className={styles.listitem}><a href="/contact" >CONTACT</a></li>
+                    <li className={styles.listitemlast}><a href="/login" >LOGIN</a><a href="/signup" >SIGNUP</a></li>
                 </ul>
 
                 
@@ -133,7 +134,7 @@ const HomePage = () => {
                         <div class="main-banner-content">
                             <h1>Smart-free banking for everybody</h1>
                             <p>Bank smarter with us now and browse personal and consumer banking services</p>
-                            <a href=".//login" class="btn btn-primary">ONLINE BANKING</a>
+                            <a href="/login" class="btn btn-primary">ONLINE BANKING</a>
                         </div>
                     </div>
                 </div>

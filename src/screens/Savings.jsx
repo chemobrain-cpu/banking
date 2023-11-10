@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import styles from './Home.module.css'
+
+
 
 const SavingPage = () => {
     let [isLoading, setIsLoading] = useState(true)
+
+    let [isShow,setIsShow] =  useState(false)
+
     let load = () => {
         setIsLoading(false)
     }
+
+
+
     useEffect(() => {
         setTimeout(() => {
             load()
         }, 5000)
 
     }, [load])
+
+
+     let togglemenu = ()=>{
+        setIsShow(prev=>!prev)
+        
+    }
 
 
 
@@ -23,19 +38,14 @@ const SavingPage = () => {
             </div>
         </div> : ""}
 
-
-
-
-
-
         <div class="navbar-area">
             <div class="luvion-responsive-nav">
                 <div class="container">
                     <div class="luvion-responsive-menu">
                         <div class="logo">
                             <a href="/">
-                                <img src="front/img/favicon.png" alt="logo" />
-                                <img src="front/img/favicon.png" alt="logo" />
+                                <img src="front/img/favicon.png" height="80" width="80" alt="logo" />
+                                <img src="front/img/favicon.png" height="80" width="80" alt="logo" />
                             </a>
                         </div>
                     </div>
@@ -46,8 +56,8 @@ const SavingPage = () => {
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light">
                         <a class="navbar-brand" href="/">
-                            <img src="front/img/favicon.png" alt="logo" />
-                            <img src="front/img/favicon.png" alt="logo" />
+                            <img src="front/img/favicon.png" height="80" width="80" alt="logo" />
+                            <img src="front/img/favicon.png" height="80" width="80" alt="logo" />
                         </a>
 
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -81,6 +91,38 @@ const SavingPage = () => {
                         </div>
                     </nav>
                 </div>
+            </div>
+
+            <div className={styles.togglebtn} onClick={togglemenu}>
+            <i class="fas fa-bars"></i>
+            </div>
+
+
+            <div className={isShow?`${styles.show}`:`${styles.menu_1}`}>
+                <ul className={styles.listcontainer}>
+                    <li className={styles.listitem}><a href="/" >HOME</a></li>
+
+                    <li className={styles.listitemexpand}><a href="/savings" >SAVINGS </a>
+                        
+                    </li>
+                    <li className={styles.listitemexpand}><a href="/current" >CURRENT </a>
+                        
+                    </li>
+
+                    <li className={styles.listitem}><a href="/about" >ABOUT US</a></li>
+
+
+
+                    <li className={styles.listitem}><a href="/cards" >CARDS</a></li>
+
+
+                    <li className={styles.listitem}><a href="/faq" >FAQ</a></li>
+
+                    <li className={styles.listitem}><a href="/contact" >CONTACT</a></li>
+                    <li className={styles.listitemlast}><a href="/login" >LOGIN</a><a href="/signup" >SIGNUP</a></li>
+                </ul>
+
+                
             </div>
         </div>
         

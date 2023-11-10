@@ -6,13 +6,14 @@
     position: absolute;
     top: 90px;
     width: 100%;
-    background-color: #fff;
+    background-color: transparent;
     padding: 0px;
     margin: 0px;
     display: flex;
     display: none;
     justify-content: center;
 }
+
 
 
 .menu_1 ul,.show  ul {
@@ -23,7 +24,8 @@
 }
 
 .menu_1 .listcontainer, .show  .listcontainer{
-    box-shadow: 5px 5px 5px rgb(242, 242, 242), -5px -0px 0px rgb(242, 242, 242);
+    box-shadow: 5px 2px 2px rgb(245, 245, 245), -5px -0px 0px rgb(244, 244, 244);
+    background-color: #fff;
 
 }
 
@@ -60,6 +62,23 @@
     color: rgb(128, 128, 128);
     font-weight: light;
 }
+.listitemlast{
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.listitemlast a{
+    color: #fff;
+    font-weight: bold;
+    width:45%;
+    background-color: #ee0979;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    text-align: center;
+    border-radius: 3px;
+
+}
 
 .togglebtn {
     position: absolute;
@@ -76,7 +95,6 @@
     position: absolute;
     top: -80px;
     width: 100%;
-    background-color: #fff;
     padding: 0px;
     margin: 0px;
     justify-content: center;
@@ -90,7 +108,6 @@
         position: absolute;
         top: 90px;
         width: 100%;
-        background-color: #fff;
         padding: 0px;
         margin: 0px;
         justify-content: center;

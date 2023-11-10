@@ -123,6 +123,7 @@ const CardPage = () => {
                     <li className={styles.listitem}><a href="/faq" >FAQ</a></li>
 
                     <li className={styles.listitem}><a href="/contact" >CONTACT</a></li>
+                    <li className={styles.listitemlast}><a href="/login" >LOGIN</a><a href="/signup" >SIGNUP</a></li>
                 </ul>
 
                 
