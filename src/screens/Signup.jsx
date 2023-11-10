@@ -113,7 +113,7 @@ function SignupPage() {
 
 
                     <div className={styles.inputcontainer}>
-                        <h2>Sign up with</h2>
+                        <h2>Account setup 1/3</h2>
 
                         <div className={styles.formCard}>
                             <FormInput
@@ -123,7 +123,7 @@ function SignupPage() {
                                 types="email"
                                 className="formcard"
                                 formName="userEmail"
-                                placeholder=''
+                                placeholder='john@gmail.com'
                                 setFormDetails={setFormDetails}
                             />
 
