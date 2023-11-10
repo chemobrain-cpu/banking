@@ -128,14 +128,14 @@
 
 @media screen and (max-width:465px) {
     .menu_1,.show {
-        top: 73px;
+        top: 83px;
     }
 }
 
 
 @media screen and (max-width:324px) {
     .menu_1,.show {
-        top: 65px;
+        top: 75px;
     }
 
     .togglebtn {
@@ -155,7 +155,7 @@
 
 @media screen and (max-width:324px) {
     .menu_1,.show {
-        top: 60px;
+        top: 70px;
     }
 
     .togglebtn {
