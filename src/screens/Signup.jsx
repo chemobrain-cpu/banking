@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState,useEffect, useCallback } from 'react';
 import styles from './Login.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import Loader from "../components/loader";
 
 
 function SignupPage() {
-
+    let [preloader,setPreloader]= useState(true)
     let [userEmail, setUserEmail] = useState("")
     let [userEmailError, setUserEmailError] = useState("")
     let [userPassword, setUserPassword] = useState("")
@@ -24,14 +24,14 @@ function SignupPage() {
     let navigate = useNavigate()
     //loaders state
 
-    const toSignup = ()=>{
+    const toSignup = () => {
         navigate('/login')
     }
 
 
-    let isFormValid = userEmail && !userEmailError 
+    let isFormValid = userEmail && !userEmailError
 
-  
+
 
     let setFormDetails = useCallback(e => {
         setIsError(false)
@@ -51,6 +51,14 @@ function SignupPage() {
     }, [])
 
 
+    useEffect(() => {
+        setTimeout(() => {
+            setPreloader(false)
+        }, 5000)
+
+    }, [])
+
+
     const submitHandler = async (e) => {
         e.preventDefault()
         if (!isFormValid) {
@@ -63,7 +71,7 @@ function SignupPage() {
             password: userPassword
         }
 
-        console.log(data)
+        navigate(`/verify/${userEmail}`)
 
         return
         let response = await dispatch(({
@@ -80,7 +88,7 @@ function SignupPage() {
             }, 3000)
 
 
-        }else{
+        } else {
             setIsLoading(false)
             setTimeout(() => {
                 navigate(`${response.url}`)
@@ -89,7 +97,7 @@ function SignupPage() {
     }
 
 
-    let navigateBackward = ()=>{
+    let navigateBackward = () => {
         navigate(-1)
 
     }
@@ -97,15 +105,22 @@ function SignupPage() {
 
     return (<>
 
+        {preloader ? <div className="preloader">
+            <div className="loader">
+                <div className="shadow"></div>
+                <div className="box"></div>
+            </div>
+        </div> : ""}
+
         <div className={styles.screenContainer}>
-            
+
 
             <div className={styles.rightContainer}>
 
                 {isLoading && <Loader />}
                 <form className={styles.rightformcontainer} onSubmit={submitHandler}>
                     <div className={styles.navigate}>
-                        
+
 
                     </div>
 
@@ -129,7 +144,7 @@ function SignupPage() {
 
                         </div>
 
-                       
+
 
                     </div>
 
@@ -138,7 +153,7 @@ function SignupPage() {
 
 
                     <div className={styles.submit}>
-                        <SubmitBtn style={{ borderRadius: '8px', marginBottom: '20px' }} text="Login" />
+                        <SubmitBtn style={{ borderRadius: '8px', marginBottom: '20px' }} text="Continue" />
 
                         {isError && <p className={styles.errorText} >{isErrorInfo}</p>}
 

@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Login.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
@@ -7,13 +7,13 @@ import SubmitBtn from '../components/Submit';
 import Loader from "../components/loader";
 
 
-function LoginPage() {
-
-    let [userEmail, setUserEmail] = useState("")
-    let [userEmailError, setUserEmailError] = useState("")
+function RegisterationPage() {
+    let [preloader, setPreloader] = useState(true)
+    let [usertext, setUsertext] = useState("")
+    let [usertextError, setUsertextError] = useState("")
     let [userPassword, setUserPassword] = useState("")
     let [userPasswordError, setUserPasswordError] = useState("")
-    let [preloader,setPreloader]= useState(true)
+
     let [isError, setIsError] = useState(false)
     let [isErrorInfo, setIsErrorInfo] = useState('')
     let [isLoading, setIsLoading] = useState(false)
@@ -24,12 +24,12 @@ function LoginPage() {
     let navigate = useNavigate()
     //loaders state
 
-    const toSignup = ()=>{
+    const toSignup = () => {
         navigate('/signup')
     }
 
 
-    let isFormValid = userEmail && !userEmailError 
+    let isFormValid = usertext && !usertextError
 
     useEffect(() => {
         setTimeout(() => {
@@ -38,14 +38,14 @@ function LoginPage() {
 
     }, [])
 
-  
+
 
     let setFormDetails = useCallback(e => {
         setIsError(false)
-        if (e.formName === "userEmail") {
+        if (e.formName === "usertext") {
             let formValue = e.value
-            setUserEmail(formValue)
-            setUserEmailError(e.error)
+            setUsertext(formValue)
+            setUsertextError(e.error)
 
         } else if (e.formName === "userPassword") {
             let formValue = e.value
@@ -66,7 +66,7 @@ function LoginPage() {
         setIsLoading(true)
 
         let data = {
-            email: userEmail,
+            text: usertext,
             password: userPassword
         }
 
@@ -74,7 +74,7 @@ function LoginPage() {
 
         return
         let response = await dispatch(({
-            email: userEmail,
+            text: usertext,
             password: userPassword
         }))
 
@@ -87,7 +87,7 @@ function LoginPage() {
             }, 3000)
 
 
-        }else{
+        } else {
             setIsLoading(false)
             setTimeout(() => {
                 navigate(`${response.url}`)
@@ -96,46 +96,90 @@ function LoginPage() {
     }
 
 
-    let navigateBackward = ()=>{
+    let navigateBackward = () => {
         navigate(-1)
 
     }
 
 
     return (<>
-    {preloader?<div className="preloader">
-    <div className="loader">
-        <div className="shadow"></div>
-        <div className="box"></div>
-    </div>
-</div>:""}
+        {preloader ? <div className="preloader">
+            <div className="loader">
+                <div className="shadow"></div>
+                <div className="box"></div>
+            </div>
+        </div> : ""}
 
         <div className={styles.screenContainer}>
-            
+
 
             <div className={styles.rightContainer}>
 
                 {isLoading && <Loader />}
                 <form className={styles.rightformcontainer} onSubmit={submitHandler}>
                     <div className={styles.navigate}>
-                        
-
                     </div>
 
 
 
 
                     <div className={styles.inputcontainer}>
-                        <h2>Login to dashboard</h2>
+                        <h2>Complete your registeration</h2>
 
                         <div className={styles.formCard}>
                             <FormInput
                                 icon='edit'
-                                label='Email'
-                                type='email'
-                                types="email"
+                                label='Full Name'
+                                type='text'
+                                types="text"
                                 className="formcard"
-                                formName="userEmail"
+                                formName="usertext"
+                                placeholder=''
+                                setFormDetails={setFormDetails}
+                            />
+
+                        </div>
+
+
+
+
+                        <div className={styles.formCard}>
+                            <FormInput
+                                icon='edit'
+                                label='Address'
+                                type='text'
+                                types="text"
+                                className="formcard"
+                                formName="usertext"
+                                placeholder=''
+                                setFormDetails={setFormDetails}
+                            />
+
+                        </div>
+
+
+                        <div className={styles.formCard}>
+                            <FormInput
+                                icon='edit'
+                                label='Country'
+                                type='text'
+                                types="text"
+                                className="formcard"
+                                formName="usertext"
+                                placeholder=''
+                                setFormDetails={setFormDetails}
+                            />
+
+                        </div>
+
+                        <div className={styles.formCard}>
+                            <FormInput
+                                icon='edit'
+                                label='Phone Number'
+                                type='text'
+                                types="text"
+                                className="formcard"
+                                formName="usertext"
                                 placeholder=''
                                 setFormDetails={setFormDetails}
                             />
@@ -152,10 +196,19 @@ function LoginPage() {
                                 formName="userPassword"
                                 placeholder=''
                             />
+                        </div><div className={styles.formCard}>
+                            <FormInput
+                                icon='edit'
+                                label='Confirm Password'
+                                type='password'
+                                className="formcard"
+                                setFormDetails={setFormDetails}
+                                formName="userPassword"
+                                placeholder=''
+                            />
                         </div>
 
                     </div>
-
 
 
 
@@ -167,8 +220,6 @@ function LoginPage() {
                     </div>
 
 
-
-                    <p className={styles.alternative}> Don't have account ? <span onClick={toSignup}>Signup</span></p>
 
 
 
@@ -183,4 +234,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage
+export default RegisterationPage

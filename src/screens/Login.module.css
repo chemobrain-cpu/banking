@@ -2,7 +2,7 @@
 .screenContainer {
     display: flex;
     height: 100vh;
-    justify-content: center;
+    justify-content: center; 
 }
 
 
@@ -20,12 +20,13 @@
     display: flex;
     justify-content: center;
     overflow-y: scroll;
-    position: relative;
-    padding-top: 10px;
+    margin-bottom: 30px;
+    height: 100vh;
+   
 }
 
 .screenContainer .rightContainer .rightformcontainer {
-    width: 50%;
+    width: 55%;
 
 
 }
@@ -41,19 +42,19 @@
 }
 
 .screenContainer .rightContainer .rightformcontainer h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 30px;
 
 }
 
 .screenContainer .rightContainer .rightformcontainer .inputcontainer {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 
 }
 
 
 .screenContainer .rightContainer .rightformcontainer .formCard {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 
