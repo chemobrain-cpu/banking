@@ -21,11 +21,11 @@
     justify-content: center;
     overflow-y: scroll;
     position: relative;
+    padding-top: 10px;
 }
 
 .screenContainer .rightContainer .rightformcontainer {
     width: 50%;
-    padding-top: 60px;
 
 
 }
@@ -165,17 +165,13 @@
     }
 
     .screenContainer .rightContainer .rightformcontainer {
-        padding-top: 20px;
+        padding-top: 40px;
 
 
     }
    
 
-    .screenContainer .rightContainer .rightformcontainer {
-        padding-top: 20px;
-
-
-    }
+   
  
     .screenContainer .rightContainer .rightformcontainer .navigate{
         display: block;
