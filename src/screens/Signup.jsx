@@ -7,7 +7,7 @@ import SubmitBtn from '../components/Submit';
 import Loader from "../components/loader";
 
 
-function LoginPage() {
+function SignupPage() {
 
     let [userEmail, setUserEmail] = useState("")
     let [userEmailError, setUserEmailError] = useState("")
@@ -25,7 +25,7 @@ function LoginPage() {
     //loaders state
 
     const toSignup = ()=>{
-        navigate('/signup')
+        navigate('/login')
     }
 
 
@@ -113,7 +113,7 @@ function LoginPage() {
 
 
                     <div className={styles.inputcontainer}>
-                        <h2>Login to dashboard</h2>
+                        <h2>Sign up with</h2>
 
                         <div className={styles.formCard}>
                             <FormInput
@@ -129,17 +129,7 @@ function LoginPage() {
 
                         </div>
 
-                        <div className={styles.formCard}>
-                            <FormInput
-                                icon='edit'
-                                label='Password'
-                                type='password'
-                                className="formcard"
-                                setFormDetails={setFormDetails}
-                                formName="userPassword"
-                                placeholder=''
-                            />
-                        </div>
+                       
 
                     </div>
 
@@ -155,7 +145,7 @@ function LoginPage() {
 
                     </div>
 
-                    <p className={styles.alternative}> Don't have account ? <span onClick={toSignup}>Signup</span></p>
+                    <p className={styles.alternative}> Already registered ? <span onClick={toSignup}>Login</span></p>
 
 
 
@@ -170,4 +160,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage
+export default SignupPage

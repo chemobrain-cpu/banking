@@ -13,7 +13,7 @@ const Faq = React.lazy(() => import('./screens/Faq'))
 const Current = React.lazy(() => import('./screens/Current'))
 const Savings = React.lazy(() => import('./screens/Savings'))
 const Login = React.lazy(() => import('./screens/Login'))
-
+const Signup = React.lazy(() => import('./screens/Signup'))
 
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
         
           {/*auth screens*/}
           <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
         </Routes>
 
       </Suspense>

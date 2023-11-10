@@ -12,7 +12,7 @@ let Loader = () => {
         <div className={styles.modal_center}>
             <div className={styles.modal_input_card}>
                 <div className={styles.modal_heading_con}>
-                    <Spinner size={50} className={styles.loader} style={{color:user?color.importantText:''}}/>
+                    <Spinner size={50} speed={.7}  className={styles.loader} style={{color:user?color.importantText:''}}/>
                 </div>
             </div>
 
