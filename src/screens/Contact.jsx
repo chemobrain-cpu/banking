@@ -110,10 +110,10 @@ const ContactPage = () => {
                 <ul className={styles.listcontainer}>
                     <li className={styles.listitem}><a href="/" >HOME</a></li>
 
-                    <li className={styles.listitemexpand}><a href="/savings" >SAVINGS </a>
+                    <li className={styles.listitemexpand}><a href="/savings" >SAVINGS ACCOUNT</a>
                         
                     </li>
-                    <li className={styles.listitemexpand}><a href="/current" >CURRENT </a>
+                    <li className={styles.listitemexpand}><a href="/current" >CURRENT ACCOUNT </a>
                         
                     </li>
 
@@ -124,7 +124,7 @@ const ContactPage = () => {
                     <li className={styles.listitem}><a href="/cards" >CARDS</a></li>
 
 
-                    <li className={styles.listitem}><a href="/faq" >FAQ</a></li>
+                    
 
                     <li className={styles.listitem}><a href="/contact" >CONTACT</a></li>
                     <li className={styles.listitemlast}><a href="/login" >LOGIN</a><a href="/signup" >SIGNUP</a></li>
