@@ -108,14 +108,13 @@ const ContactPage = () => {
 
             <div className={isShow?`${styles.show}`:`${styles.menu_1}`}>
                 <ul className={styles.listcontainer}>
-                    <li className={styles.listitem}><a href="/" >HOMEs</a></li>
+                    <li className={styles.listitem}><a href="/" >HOME</a></li>
 
-                    <li className={styles.listitemexpand}><a href="#" >PERSONAL </a>
-                        <ul className={styles.sublistcontainer}>
-                            <li className={styles.sublistitem}><a href="/savings" >SAVINGS ACCOUNT</a></li>
-
-                            <li className={styles.sublistitem}><a href="/current" >CURRENT ACCOUNT</a></li>
-                        </ul>
+                    <li className={styles.listitemexpand}><a href="/savings" >SAVINGS </a>
+                        
+                    </li>
+                    <li className={styles.listitemexpand}><a href="/current" >CURRENT </a>
+                        
                     </li>
 
                     <li className={styles.listitem}><a href="/about" >ABOUT US</a></li>
